@@ -23,6 +23,24 @@ jobs:
       - run: ./gradlew lint
 
   ##########################################################
+  # Assemble Job:
+  # Install dependencies and assemble debug and test APKs
+  ##########################################################
+  assemble:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Assemble Debug
+        run: ./gradlew assembleDebug
+
+      - name: Assemble Debug Android Test
+        run: ./gradlew assembleDebugAndroidTest
+
+
+  ##########################################################
   # Unit Test Job:
   # Install dependencies and execute unit tests
   ##########################################################
