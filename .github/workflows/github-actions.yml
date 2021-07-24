@@ -36,10 +36,6 @@ jobs:
       - name: Assemble Debug
         run: ./gradlew assembleDebug
 
-      - name: Assemble Debug Android Test
-        run: ./gradlew assembleDebugAndroidTest
-
-
   ##########################################################
   # Unit Test Job:
   # Install dependencies and execute unit tests
@@ -59,22 +55,3 @@ jobs:
       # Execute unit tests
       - name: Unit Test
         run: ./gradlew testDebugUnitTest
-
-
-  ##########################################################
-  # Instrumentation Test Job:
-  # Install dependencies and execute instrumentation tests
-  # - Using macOS to initiate Android Emulator
-  ##########################################################
-  instrumentation_test:
-    needs: assemble
-    runs-on: macOS-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-
-      - name: Run Instrumentation Tests on Emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 28
-          script: ./gradlew connectedDebugAndroidTest
