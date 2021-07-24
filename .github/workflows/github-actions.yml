@@ -12,7 +12,7 @@ jobs:
   # Lint Job:
   # Install dependencies and execute lint debug
   ##########################################################
-  android_lint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
